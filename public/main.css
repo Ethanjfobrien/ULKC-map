@@ -1,0 +1,65 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+			padding: 0;
+			margin: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+#button_table a {
+    line-height: 50px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    width:100%;
+    font-family: sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#button_table {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    bottom 0;
+    width: 100%;
+    text-align: center;
+/*    background: rgba( 255,0,0,.5);*/
+}
+
+#update a{
+    background: rgba( 255,0,0,.5)
+}
+
+#update a:hover {
+    background: rgba( 255,0,0,.75)
+}
+
+#feedback {
+    width: 80px;
+}
+
+#feedback a {
+    font-size: 15px;
+    background: rgba(74, 74, 74, 0.72);    
+}
+
+#feedback a:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
