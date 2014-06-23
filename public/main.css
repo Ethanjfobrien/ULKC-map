@@ -63,3 +63,17 @@ body {
     background: rgba(0, 0, 0, 0.7);
 }
 
+
+#popup {
+    display: none;
+    position: absolute;
+    margin: 0 auto;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 400px;
+    background: #f3f3f3;
+    font-family: sans-serif;
+    border-radius: 10px;
+    border: solid #888 2px;
+}
