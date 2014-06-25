@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <!-- Begin Inspectlet Embed Code -->
 <script type="text/javascript" id="inspectletjs">
 	window.__insp = window.__insp || [];
@@ -15,6 +16,7 @@
 	})();
 </script>
 <!-- End Inspectlet Embed Code -->
+    
 	<title>ULKC app test</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -24,22 +26,16 @@
 
 	<script src="leaflet-0.7.2/leaflet.js"></script>
 
-    <script>
-        function test(){
-            document.getElementById('popup').style.display = "block";
-        }
-    </script>
-    
 </head>
 <body>
     <div id="map"></div>
     <table id="button_table">
         <tr>
             <td id="update"><a href=#>Add me</a></td>
-            <td id="feedback" ><a href=# onclick="test()">feedback</a></td>
+            <td id="feedback" ><a href=# onclick="feedbackClick()">feedback</a></td>
         </tr>
     </table>
-    
+    <div id="grayout" ></div>
     <div id="popup" > <h1>Contact Form</h1></div>
 
 	<script>
@@ -82,6 +78,34 @@ map.on('click', function addMarker(e){
     var newMarker = new L.marker(e.latlng).addTo(map).bindPopup("Loc: "+ e.latlng);
 });
         
+        function feedbackClick(){
+           document.getElementById('grayout').style.display = "block"; document.getElementById('popup').style.display = "block";
+        }
+        
+//        function targetIsPopup(t){
+//            alert(t);
+//            return true;
+//}
+//
+//        
+//        // Function that checks the onclick event and if the event occurs, then only it will display the form. It hides the form when user click outside the form.
+//        
+document.onclick=check;
+function check(e){
+   var popupObj = document.getElementById('popup');
+    
+    if(popupObj.style.display!='block') {
+        return;
+    }
+    
+    var target = (e && e.target) || (event &&       event.srcElement);
+    var grayoutObj = document.getElementById('grayout');
+     target==grayoutObj?closePopup():null;
+    
+}
+        
+function closePopup() { document.getElementById('grayout').style.display = "none"; document.getElementById('popup').style.display = "none";
+}
         
 	</script>
 </body>
