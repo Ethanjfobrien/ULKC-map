@@ -46,16 +46,21 @@ body {
     bottom 0;
     width: 100%;
     text-align: center;
-/*    background: rgba( 255,0,0,.5);*/
 }
 
-#update a{
+.unselected{
     background: rgba( 255,0,0,.5);
 }
 
-#update a:hover {
-    background: rgba( 255,0,0,.75);
+.selected {
+    background: rgba(255,0,0,.75);
 }
+
+/*
+#update a:hover {
+    background-color: rgba(0,0,255,.5);
+}
+*/
 
 #feedback {
     width: 90px;
@@ -98,21 +103,10 @@ body {
 
 #submenu {
     overflow: hidden;
-    line-height:0;
-    height: 0;
     opacity: 1;
     padding: 0;
     margin: 0;
     list-style-type: none;
-}
-
-
-
-#submenu {
-/*
-    line-height: 0;
-    height: 0;
-*/
      -webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
     -ms-transition: all 1s ease-in-out;
@@ -129,10 +123,12 @@ body {
     background: rgba(162, 0, 0, 0.56);
 }
 
-/*
-#button_table:hover #submenu {
-    line-height: 100px;
-    height: 150px;
-    opacity:1;
+.hiddenMenu {
+    line-height:0;
+    height: 0;
 }
-*/
+
+.expandedMenu {
+    line-height:50px;
+    height: 150px;
+}
