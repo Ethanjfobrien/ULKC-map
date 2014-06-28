@@ -107,6 +107,7 @@
         function currentLoc() {
             toggleSubmenu();
             customHoverEnd();
+            document.getElementById('updateLink').innerHTML = "Add me!";
         map.on('locationfound', onLocationFound);
 		map.on('locationerror', onLocationError);
 		map.locate({setView: true, maxZoom: 3});
@@ -122,7 +123,7 @@
 map.on('click', function addMarker(e){
 	// Add marker to map at click location; add popup window
     if(enableAddMarker){
-    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup(popupText);
+    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup(popupText).openPopup();
     }
     enableAddMarker = false;
     document.getElementById('updateLink').innerHTML = "Add me!";
