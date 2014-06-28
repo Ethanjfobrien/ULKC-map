@@ -31,14 +31,14 @@
     <div id="map"></div>
     <table id="button_table" cellspacing="0" >
         <tr>
-            <td id="update"><a href=# onclick="updateClick()" class="initial">Add me!</a>
+            <td id="update"><a id="updateLink" href=# onclick="updateClick()" class="initial">Add me!</a>
             </td>
             <td id="feedback" ><a href=# onclick="feedbackClick()">feedback</a></td>
         </tr>
         <tr>
             <td colspan="2"><ul id="submenu" class="hiddenMenu">
                     <li><a onclick="currentLoc()" id="first" href=#> current location</a></li>
-                    <li><a id ="second" href =#>find on map</a></li>
+                    <li><a onclick="findOnMap()" id ="second" href =#>find on map</a></li>
                     <li><a id="third">edit a marker</a></li>
                 </ul>
             </td>
@@ -47,8 +47,12 @@
     
     <div id="grayout" ></div>
     <div id="popup" > <h1>Contact Form</h1></div>
-
+    
+    <div id="profile"><a href="https://www.facebook.com/ethan.obrien1"><img src="me-small.jpg"/><br>Ethan O'Brien</a><br>
+    joined: 2011</div>
 	<script>
+        var popupText = document.getElementById("profile");
+        var enableAddMarker = false;
         var updateButton = document.getElementById('update');
         window.onload = function(){
             updateButton.className = 'unselected';}
@@ -57,14 +61,14 @@
         updateButton.onmouseout = customHoverEnd;
         
         function customHoverStart() {
-            var submenu = document.getElementById('submenu').classname;
+            var submenu = document.getElementById('submenu').className;
             if(submenu!='expandedMenu'){
                 updateButton.className = 'selected';
             }
         }
         
         function customHoverEnd() {
-            var submenu = document.getElementById('submenu').classname;
+            var submenu = document.getElementById('submenu').className;
             if(submenu!='expandedMenu'){
                 updateButton.className = 'unselected';
             }
@@ -101,27 +105,36 @@
 		}
 
         function currentLoc() {
+            toggleSubmenu();
+            customHoverEnd();
         map.on('locationfound', onLocationFound);
 		map.on('locationerror', onLocationError);
 		map.locate({setView: true, maxZoom: 3});
         }
         
+        function findOnMap() {
+            customHoverEnd();
+            toggleSubmenu();
+ document.getElementById('updateLink').innerHTML = "click to place marker";
+            enableAddMarker = true;
+        }
+        
 map.on('click', function addMarker(e){
 	// Add marker to map at click location; add popup window
-    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup("Loc: "+ e.latlng);
+    if(enableAddMarker){
+    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup(popupText);
+    }
+    enableAddMarker = false;
+    document.getElementById('updateLink').innerHTML = "Add me!";
 });
+        
+//        "Loc: "+ e.latlng
         
         function feedbackClick(){
            document.getElementById('grayout').style.display = "block"; document.getElementById('popup').style.display = "block";
         }
         
-//        function targetIsPopup(t){
-//            alert(t);
-//            return true;
-//}
-//
-//        
-//        // Function that checks the onclick event and if the event occurs, then only it will display the form. It hides the form when user click outside the form.
+        // Function that checks the onclick event and if the event occurs, then only it will display the form. It hides the form when user click outside the form.
 //        
 document.onclick=check;
 function check(e){
@@ -141,22 +154,16 @@ function closePopup() { document.getElementById('grayout').style.display = "none
 }
         
         function updateClick() {
-            var updateButton = document.getElementById('update').classname;
-            var submenu = document.getElementById('submenu').classname;
-           if((updateButton=='unselected') && (submenu=='hiddenMenu')) {
-               toggleSelected();
+            var submenu = document.getElementById('submenu').className;
+ document.getElementById('updateLink').innerHTML = submenu=="hiddenMenu"? "hide menu":"Add me!";
+            var updateButton = document.getElementById('update').className;
+            var submenu = document.getElementById('submenu').className;
                toggleSubmenu();
-           }
         }
         
 function toggleSubmenu() {
     var submenu = document.getElementById('submenu');
             submenu.className = submenu.className == 'hiddenMenu'?'expandedMenu':'hiddenMenu';
-}
-        
-function toggleSelected() {
-    var updateButton = document.getElementById('update');
-            updateButton.className = updateButton.className=='unselected'?'selected':'unselected';
 }
         
 	</script>
