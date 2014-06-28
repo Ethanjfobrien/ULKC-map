@@ -47,12 +47,16 @@
     
     <div id="grayout" ></div>
     <div id="popup" > <h1>Contact Form</h1>
-    intentionally blank for now</div>
+    intentionally blank for now. leave comments on facebook if you have suggestions</div>
     
     
     
 	<script>
-        var popupText = '<div style="width:100px;" id="profile1"><a href="https://www.facebook.com/ethan.obrien1"><img src="me-small.jpg"/><br>Ethan O\'Brien</a><br>joined: 2011</div>';
+        var popupEthan = '<div style="width:100px;" id="profile1"><a href="https://www.facebook.com/ethan.obrien1"><img src="me-small.jpg"/><br>Ethan O\'Brien</a><br>joined: 2011</div>';
+        
+        var popupDana = '<div style="width:100px;" id="profile1"><a href="https://www.facebook.com/dana.griepentrog.1"><img src="dana.jpg"/><br>Dana Griepentrog</a><br>joined: 2013</div>';
+        
+        var profile = '<div style="width:100px;" id="profile1"><img src="blank-profile.jpg"/><br>this will be editable</div>';
         
         
         var enableAddMarker = false;
@@ -100,9 +104,10 @@ L.Map = L.Map.extend({
         
 		var map = L.map('map').setView([52.67575, -8.5837], 2);
         
-        L.marker([52.67575, -8.58372],{icon: redIcon}).addTo(map).bindPopup('<a href="https://www.facebook.com/universityoflimerickkayakclub">ULKC boathouse</a>').openPopup();
+        L.marker([52.67575, -8.58372],{icon: redIcon}).addTo(map).bindPopup('<a href="https://www.facebook.com/universityoflimerickkayakclub">ULKC boathouse</a>').openPopup();    
+        L.marker([44.8179,-91.583]).addTo(map).bindPopup(popupDana).openPopup();
         
-         L.marker([38.02576, -78.51686]).addTo(map).bindPopup(popupText).openPopup();
+                 L.marker([38.02576, -78.51686]).addTo(map).bindPopup(popupEthan).openPopup();
         
     L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors,Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>'
@@ -111,7 +116,7 @@ L.Map = L.Map.extend({
 		function onLocationFound(e) {
 
 			L.marker(e.latlng).addTo(map)
-				.bindPopup("loc: " + e.latlng).openPopup();
+				.bindPopup(profile).openPopup();
 		}
 
 		function onLocationError(e) {
@@ -137,7 +142,7 @@ L.Map = L.Map.extend({
 map.on('click', function addMarker(e){
 	// Add marker to map at click location; add popup window
     if(enableAddMarker){
-    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup(popupText).openPopup();
+    var newMarker = new L.marker(e.latlng).addTo(map).bindPopup(profile).openPopup();
     }
     enableAddMarker = false;
     document.getElementById('updateLink').innerHTML = "Add me!";
