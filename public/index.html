@@ -31,7 +31,7 @@
     <div id="map"></div>
     <table id="button_table" cellspacing="0" >
         <tr>
-            <td id="update"><a onmouseout="customHover()" onmouseover="customHover()" href=# onclick="updateClick()" class="initial">Add me!</a>
+            <td id="update"><a href=# onclick="updateClick()" class="initial">Add me!</a>
             </td>
             <td id="feedback" ><a href=# onclick="feedbackClick()">feedback</a></td>
         </tr>
@@ -49,10 +49,27 @@
     <div id="popup" > <h1>Contact Form</h1></div>
 
 	<script>
-        window.onload = customHover;
         var updateButton = document.getElementById('update');
-        updateButton.onmouseover = customHover();
-        updateButton.onmouseout = customHover;
+        window.onload = function(){
+            updateButton.className = 'unselected';}
+        
+        updateButton.onmouseover = customHoverStart;
+        updateButton.onmouseout = customHoverEnd;
+        
+        function customHoverStart() {
+            var submenu = document.getElementById('submenu').classname;
+            if(submenu!='expandedMenu'){
+                updateButton.className = 'selected';
+            }
+        }
+        
+        function customHoverEnd() {
+            var submenu = document.getElementById('submenu').classname;
+            if(submenu!='expandedMenu'){
+                updateButton.className = 'unselected';
+            }
+        }
+        
         var redIconPath = L.Icon.Default.imagePath + '/marker-red.png';
         var RedIcon = L.Icon.Default.extend({
             options: {
@@ -141,15 +158,6 @@ function toggleSelected() {
     var updateButton = document.getElementById('update');
             updateButton.className = updateButton.className=='unselected'?'selected':'unselected';
 }
-        
-        function customHover() {
-            var submenu = document.getElementById('submenu').classname;
-            if(submenu=='expandedMenu'){
-                return;
-            }
-            var updateButton = document.getElementById('update');
-            updateButton.className = updateButton.className=='selected'?'unselected':'selected';
-        }
         
 	</script>
 </body>
