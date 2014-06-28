@@ -48,6 +48,10 @@ body {
     text-align: center;
 }
 
+.initial {
+    background-color:transparent;
+}
+
 .unselected{
     background: rgba( 255,0,0,.5);
 }
